@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.container div:first-child {
+  position: absolute;
+  top: 32px;
+  height: 3rem;
+  width: 3rem;
+}
+
+.container div:not(:first-child) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container div.active::before {
+  content: url('/icons/hover.svg');
+}
+
+.container button {
+  border: none;
+  background-color: transparent;
+  padding: 1rem 1.25rem;
+}
+
+.container div:nth-child(2) {
+  margin-bottom: 2rem;
+}
+
+.container img:not(:first-child) {
+  height: 2rem;
+  width: 2rem;
+}
+
+.container div.notActive {
+  margin-left: 4px;
+}

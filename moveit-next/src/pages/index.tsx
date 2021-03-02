@@ -2,15 +2,17 @@ import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 
 import { CompletedChallenges } from '../components/CompletedChallenges'
-import { CountdownProvider } from '../contexts/CountdownContext'
 import { Countdown } from '../components/Countdown'
 import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import { ChallengeBox } from '../components/ChallengeBox'
+import { LateralMenu } from '../components/LateralMenu'
 
+import { CountdownProvider } from '../contexts/CountdownContext'
+import { ChallengesProvider } from '../contexts/ChallengesContext'
+import { NavigationProvider } from '../contexts/NavigationContext'
 
 import styles from '../styles/pages/Home.module.css'
-import { ChallengesProvider } from '../contexts/ChallengesContext'
 
 interface HomeProps {
   level: number,
@@ -20,32 +22,35 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | move.it</title>
-        </Head>
+    <NavigationProvider>
+      <ChallengesProvider
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+      >
+        <LateralMenu />
+        <div className={styles.container}>
+          <Head>
+            <title>Início | move.it</title>
+          </Head>
 
-        <ExperienceBar />
+          <ExperienceBar />
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
+      </ChallengesProvider>
+    </NavigationProvider>
   )
 }
 
