@@ -31,7 +31,7 @@ export default function Home(props: HomeProps) {
         <LateralMenu />
         <div className={styles.container}>
           <Head>
-            <title>Início | move.it</title>
+            <title>Início | move.italo</title>
           </Head>
 
           <ExperienceBar />
