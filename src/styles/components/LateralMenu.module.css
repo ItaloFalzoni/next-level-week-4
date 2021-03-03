@@ -26,10 +26,14 @@
   content: url('/icons/hover.svg');
 }
 
-.container button {
+.container a {
   border: none;
   background-color: transparent;
   padding: 1rem 1.25rem;
+}
+
+.container a:hover {
+  cursor: pointer;
 }
 
 .container div:nth-child(2) {
