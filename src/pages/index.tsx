@@ -1,14 +1,15 @@
 import Head from 'next/head'
+import { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next'
 
+import { LateralMenu } from '../components/LateralMenu';
 import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from '../components/Profile';
 import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from "../components/Countdown";
 import { ChallengeBox } from "../components/ChallengeBox";
-import { LateralMenu } from '../components/LateralMenu';
 
-import { NavigationProvider } from '../contexts/NavigationContext';
+import { NavigationContext, NavigationProvider } from '../contexts/NavigationContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
@@ -21,35 +22,48 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
+  const { tabActive } = useContext(NavigationContext)
+
+  useEffect(() => {
+    console.log(tabActive)
+  }, [tabActive])
+
   return (
     <NavigationProvider>
-      <ChallengesProvider
-        level={props.level}
-        currentExperience={props.currentExperience}
-        challengesCompleted={props.challengesCompleted}
-      >
-        <LateralMenu />
-        <div className={styles.container}>
-          <Head>
-            <title>Início | move.italo</title>
-          </Head>
+      <LateralMenu />
 
-          <ExperienceBar />
+      <Head>
+          <title>Início | move.italo</title>
+      </Head>
 
-          <CountdownProvider>
-            <section>
-              <div>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
-        </div>
-      </ChallengesProvider>
+      <div className={styles.container}>
+        {
+          tabActive == 'leaderboard' ? (
+            <div></div>
+          ) : (
+            <ChallengesProvider
+              level={props.level}
+              currentExperience={props.currentExperience}
+              challengesCompleted={props.challengesCompleted}
+            >
+              <ExperienceBar />
+  
+              <CountdownProvider>
+                <section>
+                  <div>
+                    <Profile />
+                    <CompletedChallenges />
+                    <Countdown />
+                  </div>
+                  <div>
+                    <ChallengeBox />
+                  </div>
+                </section>
+              </CountdownProvider>
+            </ChallengesProvider>
+          )
+        }
+      </div>
     </NavigationProvider>
   )
 }

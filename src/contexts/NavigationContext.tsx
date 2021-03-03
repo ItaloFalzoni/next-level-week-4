@@ -23,10 +23,6 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
     setTabActive('leaderboard')
   }
 
-  useEffect(() => {
-    console.log(tabActive)
-  }, [tabActive])
-
   return (
     <NavigationContext.Provider value={{
       tabActive,

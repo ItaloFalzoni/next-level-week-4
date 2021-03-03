@@ -26,7 +26,7 @@ export function LateralMenu() {
             </a>
           </div>
         </>
-      ) : (
+      ) : tabActive == 'leaderboard' &&(
         <>
           <div className={styles.notActive}>
             <a onClick={goToHome}>
