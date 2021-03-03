@@ -23,6 +23,7 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
     setTabActive('leaderboard')
   }
 
+
   return (
     <NavigationContext.Provider value={{
       tabActive,

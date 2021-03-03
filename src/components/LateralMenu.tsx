@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { NavigationContext } from '../contexts/NavigationContext'
 
@@ -26,7 +26,7 @@ export function LateralMenu() {
             </a>
           </div>
         </>
-      ) : tabActive == 'leaderboard' &&(
+      ) : tabActive == 'leaderboard' && (
         <>
           <div className={styles.notActive}>
             <a onClick={goToHome}>
