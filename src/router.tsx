@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
 import Home from './pages/home'
-import { LeaderboardScreen } from './pages/leaderboard';
+import Leaderboard from './pages/leaderboard'
 
-import { NavigationContext } from './contexts/NavigationContext';
+import { NavigationContext } from './contexts/NavigationContext'
 
 export default function Router() {
   const { tabActive } = useContext(NavigationContext)
@@ -12,7 +12,7 @@ export default function Router() {
     tabActive == 'home' ? (
       <Home />
     ) : tabActive == 'leaderboard' && (
-      <LeaderboardScreen />
+      <Leaderboard />
     )
   )
 }

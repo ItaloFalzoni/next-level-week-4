@@ -4,8 +4,8 @@
 }
 
 .profileContainer > img {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 5.5em;
+  height: 5.5em;
   border-radius: 50%;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .profileContainer div strong {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: 600;
   color: var(--title);
 }

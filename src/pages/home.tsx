@@ -4,21 +4,24 @@ import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from "../components/Countdown";
 import { ChallengeBox } from "../components/ChallengeBox";
 
+import styles from '../styles/pages/Home.module.css'
 
 export default function Home() {
   return (
-    <section>
-      <ExperienceBar />
-      <div>
+    <div className={styles.container}>
+      <section>
+        <ExperienceBar />
         <div>
-          <Profile />
-          <CompletedChallenges />
-          <Countdown />
+          <div>
+            <Profile />
+            <CompletedChallenges />
+            <Countdown />
+          </div>
+          <div>
+            <ChallengeBox />
+          </div>
         </div>
-        <div>
-          <ChallengeBox />
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }

@@ -5,7 +5,6 @@ import { NavigationProvider } from '../contexts/NavigationContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
-import styles from '../styles/pages/Home.module.css'
 import Router from '../router';
 import { LateralMenu } from '../components/LateralMenu';
 
@@ -24,19 +23,17 @@ export default function Main(props: MainProps) {
         <title>Início | move.italo</title>
       </Head>
 
-      <div className={styles.container}>
-        <ChallengesProvider
-          level={props.level}
-          currentExperience={props.currentExperience}
-          challengesCompleted={props.challengesCompleted}
-        >
-          <CountdownProvider>
+      <ChallengesProvider
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+      >
+        <CountdownProvider>
 
-            <Router />
+          <Router />
 
-          </CountdownProvider>
-        </ChallengesProvider>
-      </div>
+        </CountdownProvider>
+      </ChallengesProvider>
     </NavigationProvider>
   )
 }

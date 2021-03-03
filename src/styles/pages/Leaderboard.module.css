@@ -1,3 +1,81 @@
-section {
+.container {
+  height: 100vh;
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container h1 {
+  font-size: 2.25rem;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+}
+
+.container .rankingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.container .rankingHeader>span {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #666;
+  opacity: 0.5;
+}
+
+.container .userContainer {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 0.5rem;
+}
+
+.container .userContainer .positionColumn {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  font-size: 24px;
+  line-height: 2rem;
+  font-weight: 500;
+
+  padding: 2rem 0;
+  height: 6rem;
+  width: 4.5rem;
+
+  background-color: var(--white);
+  border-radius: 5px 0 0 5px;
+  margin-right: 0.25rem;
+}
+
+.container .userContainer .contentUserGroup {
+  display: flex;
   flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+
+  padding: 0 4rem 0 1.5rem;
+  height: 6rem;
+
+  background-color: var(--white);
+  border-radius: 0 5px 5px 0;
+}
+
+.container .userContainer .contentUserGroup div>span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.container .userContainer .contentUserGroup span>strong {
+  font-weight: 500;
+  color: #5965E0;
 }
