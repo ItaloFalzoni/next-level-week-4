@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode, useEffect } from 'react'
 import Cookies from 'js-cookie'
+
 import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
 

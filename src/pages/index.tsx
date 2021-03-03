@@ -1,16 +1,16 @@
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 
-import { CompletedChallenges } from '../components/CompletedChallenges'
-import { Countdown } from '../components/Countdown'
-import { ExperienceBar } from '../components/ExperienceBar'
-import { Profile } from '../components/Profile'
-import { ChallengeBox } from '../components/ChallengeBox'
-import { LateralMenu } from '../components/LateralMenu'
+import { ExperienceBar } from "../components/ExperienceBar";
+import { Profile } from '../components/Profile';
+import { CompletedChallenges } from '../components/CompletedChallenges';
+import { Countdown } from "../components/Countdown";
+import { ChallengeBox } from "../components/ChallengeBox";
+import { LateralMenu } from '../components/LateralMenu';
 
-import { CountdownProvider } from '../contexts/CountdownContext'
-import { ChallengesProvider } from '../contexts/ChallengesContext'
-import { NavigationProvider } from '../contexts/NavigationContext'
+import { NavigationProvider } from '../contexts/NavigationContext';
+import { CountdownProvider } from '../contexts/CountdownContext';
+import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 import styles from '../styles/pages/Home.module.css'
 
