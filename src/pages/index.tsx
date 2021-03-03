@@ -6,16 +6,16 @@ import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 import styles from '../styles/pages/Home.module.css'
-import Router from './router';
+import Router from '../router';
 import { LateralMenu } from '../components/LateralMenu';
 
-interface HomeProps {
+interface MainProps {
   level: number,
   currentExperience: number,
   challengesCompleted: number
 }
 
-export default function Home(props: HomeProps) {
+export default function Main(props: MainProps) {
   return (
     <NavigationProvider>
       <LateralMenu />
