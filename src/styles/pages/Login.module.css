@@ -1,0 +1,105 @@
+.container {
+  height: 100vh;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+  
+  background-color: var(--blue);
+}
+
+.container>img {
+  height: 41.25rem;
+  margin-left: -4.25rem;
+}
+
+.container>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 12.5rem 7.5rem;
+}
+
+.container>div>img {
+  height: 4.75rem;
+  margin-bottom: 6rem;
+}
+
+.container>div h3 {
+  font-size: 2.25rem;
+  color: var(--white);
+  font-weight: 600;
+  line-height: 2.875rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.container .githubDescription {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 2.5rem;
+
+  opacity: 0.5;
+}
+
+.container .githubDescription>img {
+  height: 2.5rem;
+
+  filter: invert(100%);
+}
+
+.container .githubDescription>span {
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  font-weight: 500;
+
+  margin-left: 1.5rem;
+  color: var(--white);
+}
+
+.container form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container form input {
+  border: none;
+  height: 5rem;
+  width: 21.25rem;
+
+  color: var(--white);
+
+  padding-left: 1.875rem;
+  background: linear-gradient(90deg, #4953B8 0%, #4953b833 100%);
+  border-radius: 5px 0px 0px 5px;
+}
+
+.container form input::placeholder {
+  color: var(--white);
+  opacity: 0.5;
+}
+
+.container form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 5rem;
+  width: 5rem;
+
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  background: var(--green);
+
+}
+
+.container form a img {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  color: var(--white);
+}

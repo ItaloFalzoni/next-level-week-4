@@ -7,6 +7,9 @@ import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 import Router from '../router';
 import { LateralMenu } from '../components/LateralMenu';
+import { AuthenticationContext, AuthenticationProvider } from '../contexts/AuthenticationContext';
+import { useContext, useEffect } from 'react';
+import Login from './login';
 
 interface MainProps {
   level: number,
@@ -14,27 +17,39 @@ interface MainProps {
   challengesCompleted: number
 }
 
-export default function Main(props: MainProps) {
+export default function MainScreen(props: MainProps) {
+  const { user } = useContext(AuthenticationContext)
+
+  useEffect(() => console.log(user), [user])
+
   return (
-    <NavigationProvider>
-      <LateralMenu />
+    <AuthenticationProvider>
+      <NavigationProvider>
+        {user ? (
+          <>
+            <LateralMenu />
 
-      <Head>
-        <title>Início | move.italo</title>
-      </Head>
+            <Head>
+              <title>Início | move.italo</title>
+            </Head>
 
-      <ChallengesProvider
-        level={props.level}
-        currentExperience={props.currentExperience}
-        challengesCompleted={props.challengesCompleted}
-      >
-        <CountdownProvider>
+            <ChallengesProvider
+              level={props.level}
+              currentExperience={props.currentExperience}
+              challengesCompleted={props.challengesCompleted}
+            >
+              <CountdownProvider>
 
-          <Router />
+                <Router />
 
-        </CountdownProvider>
-      </ChallengesProvider>
-    </NavigationProvider>
+              </CountdownProvider>
+            </ChallengesProvider>
+          </>
+        ) : (
+            <Login />
+          )}
+      </NavigationProvider>
+    </AuthenticationProvider>
   )
 }
 
