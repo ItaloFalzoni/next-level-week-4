@@ -27,3 +27,25 @@
 .profileContainer div p img {
   margin-right: 0.5rem;
 }
+
+.profileContainer a.logout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  margin-right: 2rem;
+
+  background-color: #f00;
+  height: 5.5rem;
+  width: 5.5rem;
+
+  color: var(--white);
+}
+
+.profileContainer a.logout:hover {
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}

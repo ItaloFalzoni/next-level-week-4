@@ -1,28 +1,27 @@
-import { stringify } from 'querystring'
 import { useContext, useState } from 'react'
-import { setFlagsFromString } from 'v8'
 import { AuthenticationContext } from '../contexts/AuthenticationContext'
 import styles from '../styles/pages/Login.module.css'
 
 export default function Login() {
   const [username, setUsername] = useState('')
+  const [isEmpty, setIsEmpty] = useState(null)
 
   const { user, handleDefaultButton, handleGithubButton } = useContext(AuthenticationContext)
 
   const handleUsername = (e: any) => setUsername(e.target.value)
 
   async function handleSubmitUsername() {
-    fetch(`https://api.github.com/users/${username}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.message == 'Not found') {
-          console.log('Digite um usuário válido.')
-        }
-
-        const { login, avatar_url } = data
-
-        handleDefaultButton(login)
-      })
+    if (username !== '') {
+      fetch(`https://api.github.com/users/${username}`)
+        .then(response => response.json())
+        .then(data => {
+          const { login } = data
+          handleDefaultButton(login)
+        })
+    } else {
+      // setIsEmpty(true)
+      console.log('Digite um usuário!')
+    }
   }
 
 

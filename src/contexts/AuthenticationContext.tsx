@@ -4,6 +4,7 @@ interface AuthenticationContextData {
   user: string,
   handleDefaultButton: (userParam: string) => void,
   handleGithubButton: () => void,
+  handleLogout: () => void,
 }
 
 interface AuthenticationProviderProps {
@@ -13,7 +14,7 @@ interface AuthenticationProviderProps {
 export const AuthenticationContext = createContext({} as AuthenticationContextData)
 
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
 
   function handleDefaultButton(userParam: string) {
     setUser(userParam)
@@ -24,11 +25,16 @@ export function AuthenticationProvider({ children }: AuthenticationProviderProps
     console.log(user, 'Github button clicked!')
   }
 
+  function handleLogout() {
+    setUser('')
+  }
+
   return (
     <AuthenticationContext.Provider value={{
       user,
       handleDefaultButton,
       handleGithubButton,
+      handleLogout,
     }}>
       {children}
     </AuthenticationContext.Provider>
