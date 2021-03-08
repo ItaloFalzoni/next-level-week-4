@@ -3,22 +3,28 @@
   flex-direction: column;
   height: 100vh;
   position: absolute;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
 }
 
-.container div:first-child {
-  position: absolute;
-  top: 32px;
+.container img {
   height: 3rem;
   width: 3rem;
+
+  margin: 1rem 0;
 }
 
-.container div:not(:first-child) {
+.container .navigationMenu {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .navigationMenu>div {
+  display: flex;
+  flex-direction: row ;
   align-items: center;
 }
 
@@ -26,7 +32,7 @@
   content: url('/icons/hover.svg');
 }
 
-.container a {
+.container .navigationMenu a {
   border: none;
   background-color: transparent;
   padding: 1rem 1.25rem;
@@ -36,13 +42,14 @@
   cursor: pointer;
 }
 
-.container div:nth-child(2) {
+.container .navigationMenu:nth-child(2) {
   margin-bottom: 2rem;
 }
 
-.container img:not(:first-child) {
+.container .navigationMenu img {
   height: 2rem;
   width: 2rem;
+
 }
 
 .container div.notActive {
