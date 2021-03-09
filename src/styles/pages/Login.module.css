@@ -93,8 +93,16 @@
 
   border: none;
   border-radius: 0px 5px 5px 0px;
-  background: var(--green);
+  
+}
 
+.container form button.buttonEnabled {
+  background: var(--green);
+}
+
+.container form button.buttonDisabled {
+  background: var(--blue-dark);
+  cursor: initial;
 }
 
 .container form a img {
@@ -102,4 +110,10 @@
   width: 1.5rem;
 
   color: var(--white);
+}
+
+.container span.alertNotFoundUser {
+  color: red;
+  top: 1rem;
+  position: relative;
 }

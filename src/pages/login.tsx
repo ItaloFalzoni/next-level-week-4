@@ -1,29 +1,50 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthenticationContext } from '../contexts/AuthenticationContext'
 import styles from '../styles/pages/Login.module.css'
 
 export default function Login() {
   const [username, setUsername] = useState('')
-  const [isEmpty, setIsEmpty] = useState(null)
+  const [usernameIsEmpty, setUsernameIsEmpty] = useState(true)
+  const [isFoundedUser, setIsFoundedUser] = useState(null)
 
-  const { user, handleDefaultButton, handleGithubButton } = useContext(AuthenticationContext)
+  const { handleDefaultButton } = useContext(AuthenticationContext)
 
   const handleUsername = (e: any) => setUsername(e.target.value)
 
-  async function handleSubmitUsername() {
+  function onFormSubmit(e) {
+    e.preventDefault()
+    console.log('Form submit')
+
     if (username !== '') {
-      fetch(`https://api.github.com/users/${username}`)
-        .then(response => response.json())
-        .then(data => {
-          const { login } = data
-          handleDefaultButton(login)
-        })
-    } else {
-      // setIsEmpty(true)
-      console.log('Digite um usuário!')
+      handleSubmitUsername()
     }
   }
 
+  async function handleSubmitUsername() {
+    if (username !== '') {
+      const searchUser = fetch(`https://api.github.com/users/${username}`)
+
+      const responseUserData = searchUser.then(response => response.json())
+
+      responseUserData.then(data => {
+        if (data.login) {
+          const { login } = data
+          setIsFoundedUser(false)
+          handleDefaultButton(login)
+        } else {
+          setIsFoundedUser(true)
+        }
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (username == '') {
+      setUsernameIsEmpty(true)
+    } else {
+      setUsernameIsEmpty(false)
+    }
+  }, [username])
 
   return (
     <div className={styles.container}>
@@ -39,7 +60,7 @@ export default function Login() {
           <span>Faça login com seu Github para começar</span>
         </div>
 
-        <form>
+        <form onSubmit={onFormSubmit}>
           <input
             type="text"
             placeholder="Digite seu username"
@@ -47,10 +68,28 @@ export default function Login() {
             onChange={handleUsername}
           />
 
-          <button type="button" onClick={handleSubmitUsername} >
-            <img src="/icons/arrow-right.svg" alt="Arrow Right" />
-          </button>
+          {
+            usernameIsEmpty ? (
+              <button
+                className={styles.buttonDisabled}
+                type="button"
+                disabled
+              >
+                <img src="/icons/arrow-right.svg" alt="Arrow Right" />
+              </button>
+            ) : (
+              <button
+                className={styles.buttonEnabled}
+                type="button"
+                onClick={handleSubmitUsername}
+              >
+                <img src="/icons/arrow-right.svg" alt="Arrow Right" />
+              </button>
+            )
+          }
         </form>
+
+        {isFoundedUser && <span className={styles.alertNotFoundUser}>Usuário não encontrado</span>}
       </div>
     </div>
   )

@@ -18,7 +18,6 @@ export function AuthenticationProvider({ children }: AuthenticationProviderProps
 
   function handleDefaultButton(userParam: string) {
     setUser(userParam)
-    console.log('Default button clicked!')
   }
 
   function handleGithubButton() {
