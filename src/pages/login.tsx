@@ -6,9 +6,9 @@ import styles from '../styles/pages/Login.module.css'
 export default function Login() {
   const [inputUser, setInputUser] = useState('')
   const [usernameIsEmpty, setUsernameIsEmpty] = useState(true)
-  const [isFoundedUser, setIsFoundedUser] = useState(null)
+  const [isFoundedUser, setIsFoundedUser] = useState(true)
 
-  const { handleDefaultButton } = useContext(AuthenticationContext)
+  const { handleSetUserLogin, handleSetAvatarUrl } = useContext(AuthenticationContext)
 
   const handleUsername = (e: any) => setInputUser(e.target.value)
 
@@ -29,22 +29,20 @@ export default function Login() {
       responseUserData.then(data => {
         const { login, avatar_url } = data
         if (login) {
-          setIsFoundedUser(false)
-          handleDefaultButton([login, avatar_url])
-        } else {
           setIsFoundedUser(true)
+          handleSetUserLogin(login)
+          handleSetAvatarUrl(avatar_url)
+        } else {
+          setIsFoundedUser(false)
         }
       })
     }
   }
 
   useEffect(() => {
-    if (inputUser == '') {
-      setUsernameIsEmpty(true)
-    } else {
-      setUsernameIsEmpty(false)
-    }
+    inputUser == '' ? setUsernameIsEmpty(true) : setUsernameIsEmpty(false)
   }, [inputUser])
+
 
   return (
     <div className={styles.container}>
@@ -89,7 +87,7 @@ export default function Login() {
           }
         </form>
 
-        {isFoundedUser && <span className={styles.alertNotFoundUser}>Usuário não encontrado</span>}
+        {!isFoundedUser && <span className={styles.alertNotFoundUser}>Usuário não encontrado</span>}
       </div>
     </div>
   )

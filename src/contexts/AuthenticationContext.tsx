@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useState } from 'react'
 
 interface AuthenticationContextData {
-  handleDefaultButton: (userParam: [login: string, avatar_url: string]) => void,
-  handleGithubButton: () => void,
+  userLogin: string,
+  avatarUrl: string,
+  handleSetUserLogin: (userLogin: string) => void,
+  handleSetAvatarUrl: (userAvatarUrl: string) => void,
   handleLogout: () => void,
-  userData: Array<string>,
 }
 
 interface AuthenticationProviderProps {
@@ -14,25 +15,28 @@ interface AuthenticationProviderProps {
 export const AuthenticationContext = createContext({} as AuthenticationContextData)
 
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
-  const [userData, setUserData] = useState([])
+  const [userLogin, setUserLogin] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('')
 
-  function handleDefaultButton(userParam: [login: string, avatar_url: string]) {
-    setUserData(userParam)
+  function handleSetUserLogin(userLogin: string) {
+    setUserLogin(userLogin)
   }
 
-  function handleGithubButton() {
-    console.log(userData, 'Github button clicked!')
+  function handleSetAvatarUrl(userAvatarUrl: string) {
+    setAvatarUrl(userAvatarUrl)
   }
 
   function handleLogout() {
-    setUserData([])
+    setUserLogin('')
+    setAvatarUrl('')
   }
 
   return (
     <AuthenticationContext.Provider value={{
-      userData,
-      handleDefaultButton,
-      handleGithubButton,
+      userLogin,
+      avatarUrl,
+      handleSetUserLogin,
+      handleSetAvatarUrl,
       handleLogout,
     }}>
       {children}
