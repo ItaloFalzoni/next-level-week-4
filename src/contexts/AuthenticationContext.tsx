@@ -1,10 +1,15 @@
 import { createContext, ReactNode, useState } from 'react'
 
+interface UserDataProps {
+  login: string,
+  avatar_url: string
+}
+
 interface AuthenticationContextData {
-  handleDefaultButton: (userParam: Array<string>) => void,
+  handleDefaultButton: (userParam: [login: string, avatar_url: string]) => void,
   handleGithubButton: () => void,
   handleLogout: () => void,
-  userData: Array<string>,
+  userData: object,
 }
 
 interface AuthenticationProviderProps {
@@ -16,7 +21,7 @@ export const AuthenticationContext = createContext({} as AuthenticationContextDa
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
   const [userData, setUserData] = useState([])
 
-  function handleDefaultButton(userParam: Array<string>) {
+  function handleDefaultButton(userParam: [login: string, avatar_url: string]) {
     setUserData(userParam)
   }
 

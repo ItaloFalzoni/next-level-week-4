@@ -23,7 +23,7 @@ export default function Router(props: MainProps) {
   const { userData } = useContext(AuthenticationContext)
 
   return (
-    userData.length !== 0 ? (
+    userData[0] ? (
       <>
         <LateralMenu />
 

@@ -8,13 +8,14 @@ export function Profile() {
   const { level } = useContext(ChallengesContext)
   const { userData } = useContext(AuthenticationContext)
 
-  const [login, avatar_url] = userData
+  const login = userData[0]
+  const avatar_url = userData[1]
 
   return (
     <div className={styles.profileContainer}>
-      {userData !== [] && <img src={avatar_url} alt={login} />}
+      <img src={avatar_url} alt={login} />
       <div>
-        <strong>{userData !== [] && login}</strong>
+        <strong>{login}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}
