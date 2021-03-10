@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useState } from 'react'
 
 interface AuthenticationContextData {
-  user: string,
-  handleDefaultButton: (userParam: string) => void,
+  handleDefaultButton: (userParam: Array<string>) => void,
   handleGithubButton: () => void,
   handleLogout: () => void,
+  userData: Array<string>,
 }
 
 interface AuthenticationProviderProps {
@@ -14,23 +14,23 @@ interface AuthenticationProviderProps {
 export const AuthenticationContext = createContext({} as AuthenticationContextData)
 
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
-  const [user, setUser] = useState('')
+  const [userData, setUserData] = useState([])
 
-  function handleDefaultButton(userParam: string) {
-    setUser(userParam)
+  function handleDefaultButton(userParam: Array<string>) {
+    setUserData(userParam)
   }
 
   function handleGithubButton() {
-    console.log(user, 'Github button clicked!')
+    console.log(userData, 'Github button clicked!')
   }
 
   function handleLogout() {
-    setUser('')
+    setUserData([])
   }
 
   return (
     <AuthenticationContext.Provider value={{
-      user,
+      userData,
       handleDefaultButton,
       handleGithubButton,
       handleLogout,

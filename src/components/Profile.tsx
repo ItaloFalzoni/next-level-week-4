@@ -6,12 +6,15 @@ import styles from '../styles/components/Profile.module.css'
 
 export function Profile() {
   const { level } = useContext(ChallengesContext)
+  const { userData } = useContext(AuthenticationContext)
+
+  const [login, avatar_url] = userData
 
   return (
     <div className={styles.profileContainer}>
-      <img src="https://github.com/italofalzoni.png" alt="Ítalo Falzoni" />
+      <img src={avatar_url} alt={login} />
       <div>
-        <strong>Ítalo Falzoni</strong>
+        <strong>{login}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}

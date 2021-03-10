@@ -1,36 +1,36 @@
 import { useContext, useEffect, useState } from 'react'
 import { AuthenticationContext } from '../contexts/AuthenticationContext'
+
 import styles from '../styles/pages/Login.module.css'
 
 export default function Login() {
-  const [username, setUsername] = useState('')
+  const [inputUser, setInputUser] = useState('')
   const [usernameIsEmpty, setUsernameIsEmpty] = useState(true)
   const [isFoundedUser, setIsFoundedUser] = useState(null)
 
   const { handleDefaultButton } = useContext(AuthenticationContext)
 
-  const handleUsername = (e: any) => setUsername(e.target.value)
+  const handleUsername = (e: any) => setInputUser(e.target.value)
 
   function onFormSubmit(e) {
     e.preventDefault()
-    console.log('Form submit')
 
-    if (username !== '') {
+    if (inputUser !== '') {
       handleSubmitUsername()
     }
   }
 
   async function handleSubmitUsername() {
-    if (username !== '') {
-      const searchUser = fetch(`https://api.github.com/users/${username}`)
+    if (inputUser !== '') {
+      const searchUser = fetch(`https://api.github.com/users/${inputUser}`)
 
       const responseUserData = searchUser.then(response => response.json())
 
       responseUserData.then(data => {
-        if (data.login) {
-          const { login } = data
+        const { login, avatar_url } = data
+        if (login) {
           setIsFoundedUser(false)
-          handleDefaultButton(login)
+          handleDefaultButton([login, avatar_url])
         } else {
           setIsFoundedUser(true)
         }
@@ -39,12 +39,12 @@ export default function Login() {
   }
 
   useEffect(() => {
-    if (username == '') {
+    if (inputUser == '') {
       setUsernameIsEmpty(true)
     } else {
       setUsernameIsEmpty(false)
     }
-  }, [username])
+  }, [inputUser])
 
   return (
     <div className={styles.container}>
@@ -64,7 +64,7 @@ export default function Login() {
           <input
             type="text"
             placeholder="Digite seu username"
-            value={username}
+            value={inputUser}
             onChange={handleUsername}
           />
 

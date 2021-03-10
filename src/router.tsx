@@ -20,10 +20,10 @@ interface MainProps {
 
 export default function Router(props: MainProps) {
   const { tabActive } = useContext(NavigationContext)
-  const { user } = useContext(AuthenticationContext)
+  const { userData } = useContext(AuthenticationContext)
 
   return (
-    user ? (
+    userData.length !== 0 ? (
       <>
         <LateralMenu />
 

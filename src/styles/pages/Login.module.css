@@ -116,4 +116,6 @@
   color: red;
   top: 1rem;
   position: relative;
+  font-size: 1rem;
+  font-weight: 400;
 }
