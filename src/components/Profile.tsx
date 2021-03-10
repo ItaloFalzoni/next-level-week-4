@@ -12,9 +12,9 @@ export function Profile() {
 
   return (
     <div className={styles.profileContainer}>
-      <img src={avatar_url} alt={login} />
+      {userData !== [] && <img src={avatar_url} alt={login} />}
       <div>
-        <strong>{login}</strong>
+        <strong>{userData !== [] && login}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}
