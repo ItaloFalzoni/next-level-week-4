@@ -4,7 +4,7 @@ interface AuthenticationContextData {
   handleDefaultButton: (userParam: [login: string, avatar_url: string]) => void,
   handleGithubButton: () => void,
   handleLogout: () => void,
-  userData: [login: string, avatar_url: string],
+  userData: Array<string>,
 }
 
 interface AuthenticationProviderProps {
