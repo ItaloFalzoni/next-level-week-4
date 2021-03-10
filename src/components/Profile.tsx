@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useDebugValue } from 'react'
 import { AuthenticationContext } from '../contexts/AuthenticationContext'
 import { ChallengesContext } from '../contexts/ChallengesContext'
 
@@ -8,7 +8,12 @@ export function Profile() {
   const { level } = useContext(ChallengesContext)
   const { userData } = useContext(AuthenticationContext)
 
-  const { "0": login, "1": avatar_url } = userData
+  if (userData.length == 0) {
+    return
+  }
+
+  const login = userData[0]
+  const avatar_url = userData[1]
 
   return (
     <div className={styles.profileContainer}>
