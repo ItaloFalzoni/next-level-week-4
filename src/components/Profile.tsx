@@ -8,8 +8,7 @@ export function Profile() {
   const { level } = useContext(ChallengesContext)
   const { userData } = useContext(AuthenticationContext)
 
-  const login = userData[0]
-  const avatar_url = userData[1]
+  const { "0": login, "1": avatar_url } = userData
 
   return (
     <div className={styles.profileContainer}>

@@ -1,15 +1,10 @@
 import { createContext, ReactNode, useState } from 'react'
 
-interface UserDataProps {
-  login: string,
-  avatar_url: string
-}
-
 interface AuthenticationContextData {
   handleDefaultButton: (userParam: [login: string, avatar_url: string]) => void,
   handleGithubButton: () => void,
   handleLogout: () => void,
-  userData: object,
+  userData: [login: string, avatar_url: string],
 }
 
 interface AuthenticationProviderProps {
