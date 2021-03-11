@@ -1,10 +1,14 @@
 import { createContext, ReactNode, useState } from 'react'
 
+export interface UserDataProps {
+  login: string,
+  avatar_url: string,
+  name?: string,
+}
+
 interface AuthenticationContextData {
-  userLogin: string,
-  avatarUrl: string,
-  handleSetUserLogin: (userLogin: string) => void,
-  handleSetAvatarUrl: (userAvatarUrl: string) => void,
+  userData: UserDataProps,
+  handleSetUserData: ({ login, avatar_url, name }: UserDataProps) => void,
   handleLogout: () => void,
 }
 
@@ -12,31 +16,33 @@ interface AuthenticationProviderProps {
   children: ReactNode,
 }
 
+const initialUserState = {
+  login: '',
+  avatar_url: '',
+  name: ''
+}
+
 export const AuthenticationContext = createContext({} as AuthenticationContextData)
 
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
-  const [userLogin, setUserLogin] = useState('')
-  const [avatarUrl, setAvatarUrl] = useState('')
+  const [userData, setUserData] = useState(initialUserState)
 
-  function handleSetUserLogin(userLogin: string) {
-    setUserLogin(userLogin)
-  }
-
-  function handleSetAvatarUrl(userAvatarUrl: string) {
-    setAvatarUrl(userAvatarUrl)
+  function handleSetUserData({ login, avatar_url, name }: UserDataProps) {
+    setUserData({
+      login: login,
+      avatar_url: avatar_url,
+      name: name
+    })
   }
 
   function handleLogout() {
-    setUserLogin('')
-    setAvatarUrl('')
+    setUserData(initialUserState)
   }
 
   return (
     <AuthenticationContext.Provider value={{
-      userLogin,
-      avatarUrl,
-      handleSetUserLogin,
-      handleSetAvatarUrl,
+      userData,
+      handleSetUserData,
       handleLogout,
     }}>
       {children}

@@ -8,7 +8,7 @@ export default function Login() {
   const [usernameIsEmpty, setUsernameIsEmpty] = useState(true)
   const [isFoundedUser, setIsFoundedUser] = useState(true)
 
-  const { handleSetUserLogin, handleSetAvatarUrl } = useContext(AuthenticationContext)
+  const { handleSetUserData } = useContext(AuthenticationContext)
 
   const handleUsername = (e: any) => setInputUser(e.target.value)
 
@@ -27,11 +27,14 @@ export default function Login() {
       const responseUserData = searchUser.then(response => response.json())
 
       responseUserData.then(data => {
-        const { login, avatar_url } = data
+        const { login, avatar_url, name } = data
         if (login) {
           setIsFoundedUser(true)
-          handleSetUserLogin(login)
-          handleSetAvatarUrl(avatar_url)
+          handleSetUserData({
+            login,
+            avatar_url,
+            name
+          })
         } else {
           setIsFoundedUser(false)
         }
@@ -42,7 +45,6 @@ export default function Login() {
   useEffect(() => {
     inputUser == '' ? setUsernameIsEmpty(true) : setUsernameIsEmpty(false)
   }, [inputUser])
-
 
   return (
     <div className={styles.container}>

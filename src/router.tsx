@@ -1,16 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useDebugValue } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
 import Home from './pages/home'
 import Leaderboard from './pages/leaderboard'
+import Login from './pages/login';
 
 import { NavigationContext } from './contexts/NavigationContext'
 import { LateralMenu } from './components/LateralMenu';
 import { ChallengesProvider } from './contexts/ChallengesContext';
 import { CountdownProvider } from './contexts/CountdownContext';
 import { AuthenticationContext } from './contexts/AuthenticationContext';
-import Login from './pages/login';
 
 interface MainProps {
   level: number,
@@ -20,10 +20,10 @@ interface MainProps {
 
 export default function Router(props: MainProps) {
   const { tabActive } = useContext(NavigationContext)
-  const { userLogin, avatarUrl } = useContext(AuthenticationContext)
+  const { userData } = useContext(AuthenticationContext)
 
   return (
-    !(!userLogin && !avatarUrl) ? (
+    userData.login ? (
       <>
         <LateralMenu />
 
