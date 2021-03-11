@@ -14,7 +14,7 @@ export function Profile() {
     <div className={styles.profileContainer}>
       <img src={avatar_url} alt={login} />
       <div>
-        <strong>{name}</strong>
+        <strong>{name ? name : login}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}

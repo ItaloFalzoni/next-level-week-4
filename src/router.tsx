@@ -1,4 +1,4 @@
-import { useContext, useDebugValue } from 'react';
+import { useContext } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
@@ -20,10 +20,10 @@ interface MainProps {
 
 export default function Router(props: MainProps) {
   const { tabActive } = useContext(NavigationContext)
-  const { userData } = useContext(AuthenticationContext)
+  const { isAuthenticated } = useContext(AuthenticationContext)
 
   return (
-    userData.login ? (
+    isAuthenticated ? (
       <>
         <LateralMenu />
 

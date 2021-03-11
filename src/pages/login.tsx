@@ -8,7 +8,7 @@ export default function Login() {
   const [usernameIsEmpty, setUsernameIsEmpty] = useState(true)
   const [isFoundedUser, setIsFoundedUser] = useState(true)
 
-  const { handleSetUserData } = useContext(AuthenticationContext)
+  const { handleSetUserData, handleSetIsAuthenticated } = useContext(AuthenticationContext)
 
   const handleUsername = (e: any) => setInputUser(e.target.value)
 
@@ -35,6 +35,7 @@ export default function Login() {
             avatar_url,
             name
           })
+          handleSetIsAuthenticated(true)
         } else {
           setIsFoundedUser(false)
         }
