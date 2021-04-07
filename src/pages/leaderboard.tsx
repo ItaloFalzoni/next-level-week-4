@@ -23,10 +23,10 @@ export default function Leaderboard() {
               <Profile />
             </div>
             <div className={styles.challengesColumn}>
-              <span><strong>1</strong> completados</span>
+              <span><strong>4</strong> completados</span>
             </div>
             <div className={styles.experiencesColumn}>
-              <span><strong>100</strong> xp</span>
+              <span><strong>400</strong> xp</span>
             </div>
           </div>
         </div>
@@ -34,23 +34,6 @@ export default function Leaderboard() {
         <div className={styles.userContainer}>
           <div className={styles.positionColumn}>
             <span>2</span>
-          </div>
-          <div className={styles.contentUserGroup}>
-            <div className={styles.profileColumn}>
-              <Profile />
-            </div>
-            <div className={styles.challengesColumn}>
-              <span><strong>2</strong> completados</span>
-            </div>
-            <div className={styles.experiencesColumn}>
-              <span><strong>200</strong> xp</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.userContainer}>
-          <div className={styles.positionColumn}>
-            <span>3</span>
           </div>
           <div className={styles.contentUserGroup}>
             <div className={styles.profileColumn}>
@@ -67,6 +50,23 @@ export default function Leaderboard() {
 
         <div className={styles.userContainer}>
           <div className={styles.positionColumn}>
+            <span>3</span>
+          </div>
+          <div className={styles.contentUserGroup}>
+            <div className={styles.profileColumn}>
+              <Profile />
+            </div>
+            <div className={styles.challengesColumn}>
+              <span><strong>2</strong> completados</span>
+            </div>
+            <div className={styles.experiencesColumn}>
+              <span><strong>200</strong> xp</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.userContainer}>
+          <div className={styles.positionColumn}>
             <span>4</span>
           </div>
           <div className={styles.contentUserGroup}>
@@ -74,10 +74,10 @@ export default function Leaderboard() {
               <Profile />
             </div>
             <div className={styles.challengesColumn}>
-              <span><strong>4</strong> completados</span>
+              <span><strong>1</strong> completados</span>
             </div>
             <div className={styles.experiencesColumn}>
-              <span><strong>400</strong> xp</span>
+              <span><strong>100</strong> xp</span>
             </div>
           </div>
         </div>
