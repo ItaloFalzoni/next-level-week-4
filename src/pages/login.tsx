@@ -35,7 +35,7 @@ export default function Login() {
             avatar_url,
             name
           })
-          handleSetIsAuthenticated(true)
+          handleSetIsAuthenticated()
         } else {
           setIsFoundedUser(false)
         }

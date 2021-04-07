@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useState } from 'react'
+import Cookies from 'js-cookie'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 export interface UserDataProps {
   login: string,
@@ -8,7 +9,7 @@ export interface UserDataProps {
 
 interface AuthenticationContextData {
   isAuthenticated: boolean,
-  handleSetIsAuthenticated: (param: boolean) => void,
+  handleSetIsAuthenticated: () => void,
   userData: UserDataProps,
   handleSetUserData: ({ login, avatar_url, name }: UserDataProps) => void,
   handleLogout: () => void,
@@ -16,6 +17,7 @@ interface AuthenticationContextData {
 
 interface AuthenticationProviderProps {
   children: ReactNode,
+  isAuthenticated: boolean
 }
 
 const initialUserState = {
@@ -26,12 +28,16 @@ const initialUserState = {
 
 export const AuthenticationContext = createContext({} as AuthenticationContextData)
 
-export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
+export function AuthenticationProvider({ children, ...rest }: AuthenticationProviderProps) {
   const [userData, setUserData] = useState(initialUserState)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(rest.isAuthenticated ?? false)
 
-  function handleSetIsAuthenticated(param: boolean) {
-    setIsAuthenticated(param)
+  useEffect(() => {
+    Cookies.set('isAuthenticated', String(isAuthenticated))
+  }, [isAuthenticated])
+
+  function handleSetIsAuthenticated() {
+    setIsAuthenticated(true)
   }
 
   function handleSetUserData({ login, avatar_url, name }: UserDataProps) {
@@ -48,7 +54,7 @@ export function AuthenticationProvider({ children }: AuthenticationProviderProps
       avatar_url: '',
       name: ''
     })
-    handleSetIsAuthenticated(false)
+    setIsAuthenticated(false)
   }
 
   return (

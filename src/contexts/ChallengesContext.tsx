@@ -44,6 +44,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
   useEffect(() => {
     Notification.requestPermission()
+    console.log('notificação de permissão')
   }, [])
 
   useEffect(() => {

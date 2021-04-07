@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
 
 import Home from './pages/home'
 import Leaderboard from './pages/leaderboard'
@@ -15,10 +14,10 @@ import { AuthenticationContext } from './contexts/AuthenticationContext';
 interface MainProps {
   level: number,
   currentExperience: number,
-  challengesCompleted: number
+  challengesCompleted: number,
 }
 
-export default function Router(props: MainProps) {
+export function Router(props: MainProps) {
   const { tabActive } = useContext(NavigationContext)
   const { isAuthenticated } = useContext(AuthenticationContext)
 
@@ -53,16 +52,4 @@ export default function Router(props: MainProps) {
       <Login />
     )
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies
-
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-    }
-  }
 }
